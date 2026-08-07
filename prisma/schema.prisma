@@ -30,21 +30,53 @@ model Subject {
   lessons Lesson[]
 }
 
-// A bite-sized lesson inside a subject, made of ordered items and played as
-// one game session.
+enum LessonKind {
+  QUIZ
+  DIALOGUE
+}
+
+// A bite-sized lesson inside a subject, played as one game session. QUIZ
+// lessons are driven by `items`; DIALOGUE lessons are driven by
+// `dialogueLines` + `dialogueQuestions` instead.
 model Lesson {
-  id        String     @id @default(cuid())
-  subjectId String
-  subject   Subject    @relation(fields: [subjectId], references: [id], onDelete: Cascade)
-  slug      String
-  title     String
-  titleAm   String
-  order     Int
-  items     Item[]
-  progress  Progress[]
+  id                String             @id @default(cuid())
+  subjectId         String
+  subject           Subject            @relation(fields: [subjectId], references: [id], onDelete: Cascade)
+  slug              String
+  title             String
+  titleAm           String
+  order             Int
+  kind              LessonKind         @default(QUIZ)
+  items             Item[]
+  dialogueLines     DialogueLine[]
+  dialogueQuestions DialogueQuestion[]
+  progress          Progress[]
 
   @@unique([subjectId, slug])
   @@unique([subjectId, order])
+}
+
+// One line of a scripted conversation between two characters.
+model DialogueLine {
+  id           String @id @default(cuid())
+  lessonId     String
+  lesson       Lesson @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+  order        Int
+  speaker      String
+  speakerEmoji String
+  am           String
+  en           String
+}
+
+// A comprehension question about the dialogue above it, multiple choice.
+model DialogueQuestion {
+  id       String @id @default(cuid())
+  lessonId String
+  lesson   Lesson @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+  order    Int
+  prompt   String
+  correct  String
+  options  Json
 }
 
 // A single teachable fact: a Fidel character, a numeral, or a vocabulary

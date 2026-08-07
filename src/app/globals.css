@@ -13,6 +13,8 @@
   --orange-dark: #e6790f;
   --pink: #ff6f9c;
   --green: #3ecf8e;
+  --teal: #2dd4bf;
+  --teal-dark: #0f9488;
 }
 
 @theme inline {
@@ -28,6 +30,8 @@
   --color-orange-dark: var(--orange-dark);
   --color-pink: var(--pink);
   --color-green: var(--green);
+  --color-teal: var(--teal);
+  --color-teal-dark: var(--teal-dark);
   --font-sans: var(--font-baloo);
   --font-ethiopic: var(--font-ethiopic);
 }

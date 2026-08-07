@@ -1,4 +1,4 @@
-export type SubjectSlug = "fidel" | "numbers" | "words";
+export type SubjectSlug = "fidel" | "numbers" | "words" | "dialogues";
 
 export const SUBJECT_THEME: Record<
   SubjectSlug,
@@ -24,6 +24,13 @@ export const SUBJECT_THEME: Record<
     border: "border-orange-dark",
     text: "text-orange-dark",
     ring: "ring-orange",
+  },
+  dialogues: {
+    bg: "bg-teal",
+    bgSoft: "bg-teal/15",
+    border: "border-teal-dark",
+    text: "text-teal-dark",
+    ring: "ring-teal",
   },
 };
 

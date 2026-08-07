@@ -5,6 +5,7 @@ import {
   NUMBERS_ONES,
   NUMBERS_TENS,
   WORD_CATEGORIES,
+  DIALOGUE_LESSONS,
   fidelLatin,
 } from "./content";
 
@@ -52,6 +53,17 @@ async function main() {
       icon: "📚",
       color: "orange",
       order: 3,
+    },
+  });
+
+  const dialogues = await prisma.subject.create({
+    data: {
+      slug: "dialogues",
+      name: "Conversations",
+      nameAm: "ንግግሮች",
+      icon: "💬",
+      color: "teal",
+      order: 4,
     },
   });
 
@@ -137,6 +149,39 @@ async function main() {
     });
   }
 
+  // --- Conversations: scripted dialogues with comprehension questions ---
+  for (const [i, dialogue] of DIALOGUE_LESSONS.entries()) {
+    const lesson = await prisma.lesson.create({
+      data: {
+        subjectId: dialogues.id,
+        slug: dialogue.slug,
+        title: dialogue.title,
+        titleAm: dialogue.titleAm,
+        order: i + 1,
+        kind: "DIALOGUE",
+      },
+    });
+    await prisma.dialogueLine.createMany({
+      data: dialogue.lines.map((line, j) => ({
+        lessonId: lesson.id,
+        order: j + 1,
+        speaker: line.speaker,
+        speakerEmoji: line.speakerEmoji,
+        am: line.am,
+        en: line.en,
+      })),
+    });
+    await prisma.dialogueQuestion.createMany({
+      data: dialogue.questions.map((q, j) => ({
+        lessonId: lesson.id,
+        order: j + 1,
+        prompt: q.prompt,
+        correct: q.correct,
+        options: q.options,
+      })),
+    });
+  }
+
   // --- Badges ---
   await prisma.badge.createMany({
     data: [
@@ -176,6 +221,13 @@ async function main() {
         description: "Complete every Words lesson.",
       },
       {
+        slug: "conversation-champ",
+        name: "Conversation Champ",
+        nameAm: "የንግግር ባለሙያ",
+        icon: "💬",
+        description: "Complete every Conversations lesson.",
+      },
+      {
         slug: "perfectionist",
         name: "Perfectionist",
         nameAm: "ፍጹም",
@@ -194,8 +246,9 @@ async function main() {
 
   const lessonCount = await prisma.lesson.count();
   const itemCount = await prisma.item.count();
+  const dialogueLineCount = await prisma.dialogueLine.count();
   console.log(
-    `Seeded ${lessonCount} lessons and ${itemCount} items across 3 subjects.`,
+    `Seeded ${lessonCount} lessons, ${itemCount} items, and ${dialogueLineCount} dialogue lines across 4 subjects.`,
   );
 }
 

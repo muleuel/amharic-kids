@@ -27,6 +27,7 @@ export async function evaluateBadges(kidId: string) {
       if (subject.slug === "fidel") earnedSlugs.push("fidel-master");
       if (subject.slug === "numbers") earnedSlugs.push("number-ninja");
       if (subject.slug === "words") earnedSlugs.push("word-wizard");
+      if (subject.slug === "dialogues") earnedSlugs.push("conversation-champ");
     }
   }
 

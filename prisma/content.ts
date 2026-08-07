@@ -171,3 +171,138 @@ export const WORD_CATEGORIES: WordCategory[] = [
     ],
   },
 ];
+
+// Advanced content: short scripted conversations between two recurring
+// characters (Sara and Dawit), each followed by comprehension questions.
+export type DialogueLineEntry = {
+  speaker: string;
+  speakerEmoji: string;
+  am: string;
+  en: string;
+};
+
+export type DialogueQuestionEntry = {
+  prompt: string;
+  correct: string;
+  options: string[];
+};
+
+export type DialogueLesson = {
+  slug: string;
+  title: string;
+  titleAm: string;
+  lines: DialogueLineEntry[];
+  questions: DialogueQuestionEntry[];
+};
+
+const SARA = { speaker: "Sara", speakerEmoji: "👧" };
+const DAWIT = { speaker: "Dawit", speakerEmoji: "👦" };
+
+export const DIALOGUE_LESSONS: DialogueLesson[] = [
+  {
+    slug: "family",
+    title: "Family",
+    titleAm: "ቤተሰብ",
+    lines: [
+      { ...SARA, am: "ሰላም! ስሜ ሳራ ነው።", en: "Hi! My name is Sara." },
+      { ...DAWIT, am: "ሰላም ሳራ! ስሜ ዳዊት ነው።", en: "Hi Sara! My name is Dawit." },
+      { ...SARA, am: "ቤተሰብህ ስንት ናቸው?", en: "How many are in your family?" },
+      {
+        ...DAWIT,
+        am: "ቤተሰቤ አምስት ናቸው፡ አባቴ፣ እናቴ፣ ወንድሜ፣ እህቴ እና እኔ።",
+        en: "My family is five: my father, my mother, my brother, my sister, and me.",
+      },
+      {
+        ...DAWIT,
+        am: "አንቺስ? ቤተሰብሽ ስንት ናቸው?",
+        en: "And you? How many are in your family?",
+      },
+      {
+        ...SARA,
+        am: "ቤተሰቤ አራት ናቸው፡ አባቴ፣ እናቴ፣ ወንድሜ እና እኔ።",
+        en: "My family is four: my father, my mother, my brother, and me.",
+      },
+      { ...SARA, am: "እኔ የመጀመሪያ ልጅ ነኝ።", en: "I am the first child." },
+      { ...DAWIT, am: "እኔም እንዲሁ! ደስ ይላል።", en: "Me too! Nice." },
+    ],
+    questions: [
+      {
+        prompt: "የዳዊት ቤተሰብ ስንት ናቸው?",
+        correct: "5",
+        options: ["5", "4", "3", "6"],
+      },
+      {
+        prompt: "የሳራ ቤተሰብ ስንት ናቸው?",
+        correct: "4",
+        options: ["5", "4", "3", "2"],
+      },
+      {
+        prompt: "ማን የመጀመሪያ ልጅ ነው?",
+        correct: "ሁለቱም",
+        options: ["ሳራ", "ዳዊት", "ሁለቱም", "ማንም"],
+      },
+      {
+        prompt: "የሳራ ጓደኛ ስም ማን ይባላል?",
+        correct: "ዳዊት",
+        options: ["ዳዊት", "ሮቤል", "ዮሴፍ", "አበበ"],
+      },
+    ],
+  },
+  {
+    slug: "education",
+    title: "Education",
+    titleAm: "ትምህርት",
+    lines: [
+      { ...SARA, am: "ትምህርት ቤት ትወዳለህ?", en: "Do you like school?" },
+      { ...DAWIT, am: "አዎ በጣም እወዳለሁ! አንቺስ?", en: "Yes, I like it a lot! And you?" },
+      {
+        ...SARA,
+        am: "እኔም እወዳለሁ። የትኛውን ትምህርት ትወዳለህ?",
+        en: "I like it too. Which subject do you like?",
+      },
+      {
+        ...DAWIT,
+        am: "ሂሳብ እወዳለሁ። አንቺስ የትኛውን ትወዳለሽ?",
+        en: "I like math. And you, which one do you like?",
+      },
+      {
+        ...SARA,
+        am: "እኔ አማርኛ እወዳለሁ። መምህራችን ጥሩ ናቸው።",
+        en: "I like Amharic. Our teacher is good.",
+      },
+      {
+        ...DAWIT,
+        am: "አዎ በጣም ጥሩ ናቸው! ወደ ትምህርት ቤት አብረን እንሂድ?",
+        en: "Yes, very good! Shall we go to school together?",
+      },
+      {
+        ...SARA,
+        am: "እሺ! ደብተሬን እና እስክርቢቶዬን ያዝኩ።",
+        en: "Okay! I have my notebook and pen.",
+      },
+      { ...DAWIT, am: "እኔም ደብተሬን ያዝኩ። እንሂድ!", en: "I have my notebook too. Let's go!" },
+    ],
+    questions: [
+      {
+        prompt: "ማን ትምህርት ቤት ይወዳል?",
+        correct: "ሁለቱም",
+        options: ["ሳራ", "ዳዊት", "ሁለቱም", "ማንም"],
+      },
+      {
+        prompt: "ዳዊት የትኛውን ትምህርት ይወዳል?",
+        correct: "ሂሳብ",
+        options: ["ሂሳብ", "አማርኛ", "ሳይንስ", "እንግሊዝኛ"],
+      },
+      {
+        prompt: "ሳራ የትኛውን ትምህርት ትወዳለች?",
+        correct: "አማርኛ",
+        options: ["አማርኛ", "ሂሳብ", "ስፖርት", "ሙዚቃ"],
+      },
+      {
+        prompt: "መምህራቸው እንዴት ናቸው?",
+        correct: "ጥሩ",
+        options: ["ጥሩ", "መጥፎ", "ትንሽ", "አዲስ"],
+      },
+    ],
+  },
+];
