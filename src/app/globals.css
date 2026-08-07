@@ -1,0 +1,113 @@
+@import "tailwindcss";
+
+:root {
+  --background: #fff8e8;
+  --foreground: #2c2050;
+  --sky: #6fd8ff;
+  --sun: #ffd23f;
+  --purple: #a56bff;
+  --purple-dark: #7c3aed;
+  --blue: #3fa9ff;
+  --blue-dark: #1d7fd6;
+  --orange: #ff9f43;
+  --orange-dark: #e6790f;
+  --pink: #ff6f9c;
+  --green: #3ecf8e;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-sky: var(--sky);
+  --color-sun: var(--sun);
+  --color-purple: var(--purple);
+  --color-purple-dark: var(--purple-dark);
+  --color-blue: var(--blue);
+  --color-blue-dark: var(--blue-dark);
+  --color-orange: var(--orange);
+  --color-orange-dark: var(--orange-dark);
+  --color-pink: var(--pink);
+  --color-green: var(--green);
+  --font-sans: var(--font-baloo);
+  --font-ethiopic: var(--font-ethiopic);
+}
+
+body {
+  background: radial-gradient(circle at 15% 0%, #d8f4ff 0%, transparent 45%),
+    radial-gradient(circle at 100% 10%, #fff1c8 0%, transparent 40%),
+    var(--background);
+  color: var(--foreground);
+  font-family: var(--font-baloo), sans-serif;
+  min-height: 100dvh;
+}
+
+.font-ethiopic {
+  font-family: var(--font-ethiopic), sans-serif;
+}
+
+.bubble-card {
+  border-radius: 2rem;
+  border-width: 4px;
+  border-style: solid;
+  box-shadow: 0 8px 0 0 rgba(0, 0, 0, 0.08);
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.bubble-card:active {
+  transform: translateY(4px);
+  box-shadow: 0 3px 0 0 rgba(0, 0, 0, 0.08);
+}
+
+.chunky-btn {
+  border-radius: 9999px;
+  font-weight: 700;
+  box-shadow: 0 6px 0 0 rgba(0, 0, 0, 0.15);
+  transition:
+    transform 0.1s ease,
+    box-shadow 0.1s ease;
+}
+
+.chunky-btn:active {
+  transform: translateY(4px);
+  box-shadow: 0 2px 0 0 rgba(0, 0, 0, 0.15);
+}
+
+.chunky-btn:disabled {
+  opacity: 0.5;
+  box-shadow: none;
+  transform: none;
+}
+
+@keyframes pop-in {
+  0% {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+  70% {
+    transform: scale(1.08);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.animate-pop {
+  animation: pop-in 0.35s ease-out;
+}
+
+@keyframes wiggle {
+  0%,
+  100% {
+    transform: rotate(-3deg);
+  }
+  50% {
+    transform: rotate(3deg);
+  }
+}
+
+.animate-wiggle {
+  animation: wiggle 0.6s ease-in-out infinite;
+}

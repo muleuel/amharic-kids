@@ -1,0 +1,111 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+// A child's local profile. No password — kids pick their profile from a
+// friendly avatar grid, keeping sign-in frictionless.
+model Kid {
+  id        String     @id @default(cuid())
+  name      String
+  avatar    String     @default("🦁")
+  stars     Int        @default(0)
+  createdAt DateTime   @default(now())
+  progress  Progress[]
+  badges    KidBadge[]
+}
+
+// A top-level area of the app: Fidel (alphabet), Numbers, Words.
+model Subject {
+  id      String   @id @default(cuid())
+  slug    String   @unique
+  name    String
+  nameAm  String
+  icon    String
+  color   String
+  order   Int
+  lessons Lesson[]
+}
+
+// A bite-sized lesson inside a subject, made of ordered items and played as
+// one game session.
+model Lesson {
+  id        String     @id @default(cuid())
+  subjectId String
+  subject   Subject    @relation(fields: [subjectId], references: [id], onDelete: Cascade)
+  slug      String
+  title     String
+  titleAm   String
+  order     Int
+  items     Item[]
+  progress  Progress[]
+
+  @@unique([subjectId, slug])
+  @@unique([subjectId, order])
+}
+
+// A single teachable fact: a Fidel character, a numeral, or a vocabulary
+// word. Which fields are populated depends on the parent subject.
+model Item {
+  id       String @id @default(cuid())
+  lessonId String
+  lesson   Lesson @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+  order    Int
+
+  // Fidel (alphabet)
+  symbol String?
+  latin  String?
+  family String?
+
+  // Numbers
+  numeral String?
+  value   Int?
+
+  // Words
+  wordAm String?
+  wordEn String?
+
+  emoji    String?
+  category String?
+}
+
+// A kid's best result on a lesson, used to unlock stars and drive the
+// progress dashboard.
+model Progress {
+  id        String   @id @default(cuid())
+  kidId     String
+  kid       Kid      @relation(fields: [kidId], references: [id], onDelete: Cascade)
+  lessonId  String
+  lesson    Lesson   @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+  stars     Int      @default(0)
+  bestScore Int      @default(0)
+  completed Boolean  @default(false)
+  updatedAt DateTime @updatedAt
+
+  @@unique([kidId, lessonId])
+}
+
+// A collectible achievement, e.g. "finished all Fidel lessons".
+model Badge {
+  id          String     @id @default(cuid())
+  slug        String     @unique
+  name        String
+  nameAm      String
+  icon        String
+  description String
+  kids        KidBadge[]
+}
+
+model KidBadge {
+  id       String   @id @default(cuid())
+  kidId    String
+  kid      Kid      @relation(fields: [kidId], references: [id], onDelete: Cascade)
+  badgeId  String
+  badge    Badge    @relation(fields: [badgeId], references: [id], onDelete: Cascade)
+  earnedAt DateTime @default(now())
+
+  @@unique([kidId, badgeId])
+}
