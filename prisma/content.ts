@@ -305,4 +305,210 @@ export const DIALOGUE_LESSONS: DialogueLesson[] = [
       },
     ],
   },
+  {
+    slug: "time",
+    title: "Time & Calendar",
+    titleAm: "ጊዜ እና ቀን መቁጠሪያ",
+    lines: [
+      { ...SARA, am: "ዛሬ ስንተኛው ቀን ነው?", en: "What day is it today?" },
+      {
+        ...DAWIT,
+        am: "ዛሬ ሰኞ ነው። ትምህርት ቤት የመጀመሪያ ቀን ነው።",
+        en: "Today is Monday. It's the first day of school.",
+      },
+      { ...SARA, am: "የሳምንቱ ቀናት ስንት ናቸው?", en: "How many days are in the week?" },
+      {
+        ...DAWIT,
+        am: "ሰባት ናቸው፡ ሰኞ፣ ማክሰኞ፣ ረቡዕ፣ ሐሙስ፣ ዓርብ፣ ቅዳሜ እና እሁድ።",
+        en: "There are seven: Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, and Sunday.",
+      },
+      {
+        ...SARA,
+        am: "ቅዳሜ እና እሁድ የእረፍት ቀናት ናቸው፣ አይደል?",
+        en: "Saturday and Sunday are rest days, right?",
+      },
+      { ...DAWIT, am: "አዎ፣ ልክ ነሽ!", en: "Yes, you're right!" },
+      { ...SARA, am: "አሁን የትኛው ወር ነው?", en: "What month is it now?" },
+      {
+        ...DAWIT,
+        am: "መስከረም ነው፣ የመጀመሪያው ወር።",
+        en: "It's Meskerem, the first month.",
+      },
+      {
+        ...SARA,
+        am: "የኢትዮጵያ አቆጣጠር ስንት ወራት አሉት?",
+        en: "How many months does the Ethiopian calendar have?",
+      },
+      {
+        ...DAWIT,
+        am: "አስራ ሦስት ወራት አሉት! አስራ ሁለቱ ወራት እያንዳንዳቸው ሠላሳ ቀናት አሏቸው፣ ጳጉሜ ግን አምስት ወይም ስድስት ቀናት ብቻ አላት።",
+        en: "It has thirteen months! The twelve months each have thirty days, but Pagume has only five or six days.",
+      },
+      {
+        ...SARA,
+        am: "እንዴት ያለ ደስ የሚል አቆጣጠር ነው! ዓመቱስ ስንት ነው?",
+        en: "What a nice calendar! What year is it?",
+      },
+      { ...DAWIT, am: "ሁለት ሺህ አስራ ስምንት ነው።", en: "It's 2018." },
+      {
+        ...SARA,
+        am: "አዲስ ዓመት መቼ ነው የሚከበረው?",
+        en: "When is the new year celebrated?",
+      },
+      {
+        ...DAWIT,
+        am: "መስከረም አንድ ቀን! እንቁጣጣሽ እንለዋለን።",
+        en: "On the first day of Meskerem! We call it Enkutatash.",
+      },
+      { ...SARA, am: "ደስ ይላል! እኔ እንቁጣጣሽ በጣም እወዳለሁ።", en: "Nice! I love Enkutatash a lot." },
+      {
+        ...DAWIT,
+        am: "እኔም እንዲሁ! አበባ እንለቅማለን እና እንዘፍናለን።",
+        en: "Me too! We pick flowers and sing.",
+      },
+    ],
+    questions: [
+      {
+        prompt: "የሳምንቱ ቀናት ስንት ናቸው?",
+        correct: "7",
+        options: ["7", "5", "6", "10"],
+      },
+      {
+        prompt: "የመጀመሪያው ወር ስም ማን ይባላል?",
+        correct: "መስከረም",
+        options: ["መስከረም", "ጥቅምት", "ጳጉሜ", "ሰኔ"],
+      },
+      {
+        prompt: "የኢትዮጵያ አቆጣጠር ስንት ወራት አሉት?",
+        correct: "13",
+        options: ["12", "13", "10", "7"],
+      },
+      {
+        prompt: "አስራ ሁለቱ ወራት እያንዳንዳቸው ስንት ቀናት አሏቸው?",
+        correct: "30",
+        options: ["30", "31", "28", "25"],
+      },
+      {
+        prompt: "እንቁጣጣሽ የሚከበረው መቼ ነው?",
+        correct: "መስከረም አንድ",
+        options: ["መስከረም አንድ", "ጥር አንድ", "ጳጉሜ አንድ", "ሰኔ አንድ"],
+      },
+      {
+        prompt: "ቅዳሜ እና እሁድ ምን ዓይነት ቀናት ናቸው?",
+        correct: "የእረፍት ቀናት",
+        options: ["የእረፍት ቀናት", "የትምህርት ቀናት", "የስራ ቀናት", "በዓል ቀናት"],
+      },
+      {
+        prompt: "በንግግሩ ውስጥ ዛሬ ስንተኛው ቀን ነው?",
+        correct: "ሰኞ",
+        options: ["ሰኞ", "ማክሰኞ", "ዓርብ", "እሁድ"],
+      },
+    ],
+  },
+  {
+    slug: "greetings",
+    title: "Greetings",
+    titleAm: "ሰላምታ",
+    lines: [
+      {
+        ...DAWIT,
+        am: "እንደምን አደርሽ ሳራ? ጥዋት ነው።",
+        en: "Good morning Sara! It's morning.",
+      },
+      {
+        ...SARA,
+        am: "ደህና አድሬያለሁ፣ አመሰግናለሁ! አንተስ እንደምን አደርክ?",
+        en: "I spent the night well, thank you! And you?",
+      },
+      {
+        ...DAWIT,
+        am: 'እኔም ደህና አድሬያለሁ። ጥዋት ላይ "እንደምን አደርክ" ወይም "እንደምን አደርሽ" እንላለን።',
+        en: 'I also spent the night well. In the morning we say "endemin aderk" (to a boy) or "endemin adersh" (to a girl).',
+      },
+      {
+        ...SARA,
+        am: "ገባኝ! ታዲያ ከሰዓት በኋላ ምን እንላለን?",
+        en: "I understand! So what do we say in the afternoon?",
+      },
+      {
+        ...DAWIT,
+        am: 'ከሰዓት በኋላ "እንደምን ዋልክ" ወይም "እንደምን ዋልሽ" እንላለን። ትርጉሙ "ቀኑን እንዴት አሳለፍክ" ማለት ነው።',
+        en: 'In the afternoon we say "endemin walk" or "endemin walsh". It means "how did you spend the day".',
+      },
+      { ...SARA, am: "እሺ፣ ማታ ስንገናኝስ?", en: "Okay, and when we meet in the evening?" },
+      {
+        ...DAWIT,
+        am: 'ማታ "እንደምን አመሸህ" ወይም "እንደምን አመሽሽ" እንላለን።',
+        en: 'In the evening we say "endemin ameshh" or "endemin ameshsh".',
+      },
+      {
+        ...SARA,
+        am: "ከመተኛታችን በፊት ደግሞ ምን እንላለን?",
+        en: "And before we sleep, what do we say?",
+      },
+      {
+        ...DAWIT,
+        am: '"ደህና እደር" ወይም "ደህና እደሪ" እንላለን፣ ትርጉሙም "መልካም ሌሊት" ማለት ነው።',
+        en: 'We say "dehna eder" or "dehna ederi", meaning "good night".',
+      },
+      {
+        ...SARA,
+        am: "ስንት ያምራል! ስንለያይስ ምን እንላለን?",
+        en: "How nice! And when we part ways, what do we say?",
+      },
+      {
+        ...DAWIT,
+        am: '"ደህና ሁን" ወይም "ደህና ሁኚ" እንላለን፣ ማለትም "ደህና ሁን" ማለት ነው።',
+        en: 'We say "dehna hun" or "dehna hugni", meaning "stay well".',
+      },
+      {
+        ...SARA,
+        am: "አመሰግናለሁ ዳዊት! ብዙ ተምሬያለሁ ዛሬ።",
+        en: "Thank you Dawit! I learned a lot today.",
+      },
+      {
+        ...DAWIT,
+        am: "እኔም ደስ ብሎኛል! ደህና ሁኚ ሳራ፣ ነገ እንገናኝ።",
+        en: "I'm happy too! Goodbye Sara, see you tomorrow.",
+      },
+      { ...SARA, am: "ደህና ሁን ዳዊት! ነገ እንገናኝ።", en: "Goodbye Dawit! See you tomorrow." },
+    ],
+    questions: [
+      {
+        prompt: "ጥዋት ላይ ምን እንላለን?",
+        correct: "እንደምን አደርክ",
+        options: ["እንደምን አደርክ", "እንደምን ዋልክ", "እንደምን አመሸህ", "ደህና ሁን"],
+      },
+      {
+        prompt: "ከሰዓት በኋላ ምን እንላለን?",
+        correct: "እንደምን ዋልክ",
+        options: ["እንደምን ዋልክ", "እንደምን አደርክ", "ደህና እደር", "ደህና ሁን"],
+      },
+      {
+        prompt: "ማታ ላይ ምን እንላለን?",
+        correct: "እንደምን አመሸህ",
+        options: ["እንደምን አመሸህ", "እንደምን አደርክ", "እንደምን ዋልክ", "ደህና ሁን"],
+      },
+      {
+        prompt: "ከመተኛታችን በፊት ምን እንላለን?",
+        correct: "ደህና እደር",
+        options: ["ደህና እደር", "እንደምን ዋልክ", "እንደምን አደርክ", "ታዲያስ"],
+      },
+      {
+        prompt: "ስንለያይ ምን እንላለን?",
+        correct: "ደህና ሁን",
+        options: ["ደህና ሁን", "ደህና እደር", "እንደምን አደርክ", "እንደምን ዋልክ"],
+      },
+      {
+        prompt: "ሳራ ምን ተምራለች ዛሬ?",
+        correct: "ሰላምታዎችን",
+        options: ["ሰላምታዎችን", "ቁጥሮችን", "ወራትን", "እንስሳትን"],
+      },
+      {
+        prompt: "ማን ለሳራ ሰላምታ አስተማራት?",
+        correct: "ዳዊት",
+        options: ["ዳዊት", "እናቷ", "አባቷ", "መምህር"],
+      },
+    ],
+  },
 ];

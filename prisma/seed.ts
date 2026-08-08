@@ -15,13 +15,16 @@ const adapter = new PrismaBetterSqlite3({
 const prisma = new PrismaClient({ adapter });
 
 async function main() {
-  // Wipe existing content so the seed is safely re-runnable.
+  // Wipe existing content so the seed is safely re-runnable. Kid profiles
+  // are kept, but their cached star total must be reset since it's derived
+  // from Progress rows, which are wiped along with the lessons they refer to.
   await prisma.kidBadge.deleteMany();
   await prisma.badge.deleteMany();
   await prisma.progress.deleteMany();
   await prisma.item.deleteMany();
   await prisma.lesson.deleteMany();
   await prisma.subject.deleteMany();
+  await prisma.kid.updateMany({ data: { stars: 0 } });
 
   const fidel = await prisma.subject.create({
     data: {
