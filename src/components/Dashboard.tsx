@@ -32,7 +32,13 @@ export function Dashboard({
             <p className="font-bold text-sun-700">⭐ {kid.stars} stars</p>
           </div>
         </div>
-        <div className="flex gap-2">
+        <div className="flex flex-wrap gap-2">
+          <Link
+            href="/dictionary"
+            className="chunky-btn border-2 border-teal-dark bg-white px-4 py-2 text-teal-dark"
+          >
+            📖 Dictionary
+          </Link>
           <Link
             href="/rewards"
             className="chunky-btn border-2 border-pink bg-white px-4 py-2 text-pink"

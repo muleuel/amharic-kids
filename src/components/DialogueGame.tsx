@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { submitLessonResult } from "@/app/actions";
 import { subjectTheme } from "@/lib/theme";
+import { SpeakButton } from "@/components/SpeakButton";
 
 type DialogueLine = {
   id: string;
@@ -172,7 +173,10 @@ export function DialogueGame({
               <span className="text-2xl">{line.speakerEmoji}</span>
               <span>{line.speaker}</span>
             </div>
-            <p className="font-ethiopic text-2xl">{line.am}</p>
+            <div className="flex items-center gap-2">
+              <p className="font-ethiopic text-2xl">{line.am}</p>
+              <SpeakButton text={line.am} size="sm" />
+            </div>
             <p className="text-foreground/50">{line.en}</p>
           </div>
         </div>
@@ -214,9 +218,12 @@ export function DialogueGame({
       </div>
 
       <div className="bubble-card flex flex-1 flex-col items-center justify-center gap-8 border-white bg-white p-8">
-        <p className="font-ethiopic text-center text-3xl font-bold">
-          {question.prompt}
-        </p>
+        <div className="flex flex-col items-center gap-3">
+          <p className="font-ethiopic text-center text-3xl font-bold">
+            {question.prompt}
+          </p>
+          <SpeakButton text={question.prompt} size="sm" />
+        </div>
 
         <div className="grid w-full grid-cols-2 gap-4">
           {question.options.map((option) => {
@@ -228,14 +235,18 @@ export function DialogueGame({
               else if (isSelected) style = "border-pink bg-pink/15";
             }
             return (
-              <button
-                key={option}
-                disabled={!!selected || submitting}
-                onClick={() => handleAnswer(option)}
-                className={`chunky-btn font-ethiopic border-4 px-4 py-5 text-xl font-bold ${style}`}
-              >
-                {option}
-              </button>
+              <div key={option} className="relative">
+                <button
+                  disabled={!!selected || submitting}
+                  onClick={() => handleAnswer(option)}
+                  className={`chunky-btn font-ethiopic w-full border-4 px-4 py-5 text-xl font-bold ${style}`}
+                >
+                  {option}
+                </button>
+                <div className="absolute -top-3 -right-3">
+                  <SpeakButton text={option} size="sm" />
+                </div>
+              </div>
             );
           })}
         </div>

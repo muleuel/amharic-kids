@@ -66,6 +66,14 @@ export default async function SubjectPage(
             {subject.nameAm}
           </span>
         </h1>
+        {subject.slug === "fidel" && (
+          <Link
+            href="/abugida"
+            className="chunky-btn border-2 border-purple-dark bg-white px-4 py-2 text-purple-dark"
+          >
+            🎵 Abugida Chant
+          </Link>
+        )}
       </div>
 
       <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3">

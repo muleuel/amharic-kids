@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { submitLessonResult } from "@/app/actions";
 import type { Question } from "@/lib/quiz";
 import { subjectTheme } from "@/lib/theme";
+import { SpeakButton } from "@/components/SpeakButton";
 
 const AMHARIC_OPTION_KINDS = new Set<Question["kind"]>(["emoji", "count"]);
 
@@ -156,16 +157,22 @@ export function QuizGame({
               else if (isSelected) style = "border-pink bg-pink/15";
             }
             return (
-              <button
-                key={option}
-                disabled={!!selected || submitting}
-                onClick={() => handleAnswer(option)}
-                className={`chunky-btn border-4 px-4 py-5 text-2xl font-bold ${style} ${
-                  showAmharicOptions ? "font-ethiopic" : ""
-                }`}
-              >
-                {option}
-              </button>
+              <div key={option} className="relative">
+                <button
+                  disabled={!!selected || submitting}
+                  onClick={() => handleAnswer(option)}
+                  className={`chunky-btn w-full border-4 px-4 py-5 text-2xl font-bold ${style} ${
+                    showAmharicOptions ? "font-ethiopic" : ""
+                  }`}
+                >
+                  {option}
+                </button>
+                {showAmharicOptions && (
+                  <div className="absolute -top-3 -right-3">
+                    <SpeakButton text={option} size="sm" />
+                  </div>
+                )}
+              </div>
             );
           })}
         </div>
@@ -203,8 +210,11 @@ function Prompt({ question }: { question: Question }) {
   }
   if (question.kind === "numeral" || question.kind === "symbol") {
     return (
-      <div className="font-ethiopic text-8xl font-bold">
-        {question.prompt}
+      <div className="flex flex-col items-center gap-3">
+        <div className="font-ethiopic text-8xl font-bold">
+          {question.prompt}
+        </div>
+        <SpeakButton text={question.prompt} />
       </div>
     );
   }

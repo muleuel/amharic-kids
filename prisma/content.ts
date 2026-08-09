@@ -53,7 +53,114 @@ export const FIDEL_FAMILIES: FidelFamily[] = [
   { name: "Tse2", consonant: "ts", chars: ["ፀ", "ፁ", "ፂ", "ፃ", "ፄ", "ፅ", "ፆ"] },
   { name: "Fe", consonant: "f", chars: ["ፈ", "ፉ", "ፊ", "ፋ", "ፌ", "ፍ", "ፎ"] },
   { name: "Pe", consonant: "p", chars: ["ፐ", "ፑ", "ፒ", "ፓ", "ፔ", "ፕ", "ፖ"] },
+  {
+    name: "Ayn",
+    consonant: "",
+    chars: ["ዐ", "ዑ", "ዒ", "ዓ", "ዔ", "ዕ", "ዖ"],
+    vowelsOnly: true,
+  },
+  { name: "Xa", consonant: "h", chars: ["ኀ", "ኁ", "ኂ", "ኃ", "ኄ", "ኅ", "ኆ"] },
 ];
+
+// The traditional 33-family recitation order used for the "Abugida chant" —
+// a diagonal reading of the chart that gives the writing system its name
+// (its first four syllables spell "a-bu-gi-da"). Row N reads family
+// ABUGIDA_ORDER[N], ABUGIDA_ORDER[N+1], ... at orders 1, 2, 3... 7,
+// wrapping around the 33-family cycle.
+export const ABUGIDA_ORDER = [
+  "A",
+  "Be",
+  "Ge",
+  "De",
+  "Ha",
+  "We",
+  "Ze",
+  "Zhe",
+  "Hha",
+  "Tte",
+  "Cche",
+  "Ye",
+  "Ke",
+  "Khe",
+  "Le",
+  "Me",
+  "Ne",
+  "Nye",
+  "Se",
+  "She",
+  "Ayn",
+  "Fe",
+  "Tse",
+  "Qe",
+  "Re",
+  "Sse",
+  "Te",
+  "Che",
+  "Xa",
+  "Ppe",
+  "Tse2",
+  "Pe",
+  "Je",
+];
+
+// Standard Ethiopic dictionary/alphabetical order (matches Unicode block
+// order), used for the dictionary's letter-browse index. Independent of
+// FIDEL_FAMILIES' array order (which drives lesson numbering) and
+// ABUGIDA_ORDER (which drives the chant).
+export const DICTIONARY_ALPHABET_ORDER = [
+  "Ha",
+  "Le",
+  "Hha",
+  "Me",
+  "Sse",
+  "Re",
+  "Se",
+  "She",
+  "Qe",
+  "Be",
+  "Ve",
+  "Te",
+  "Che",
+  "Xa",
+  "Ne",
+  "Nye",
+  "A",
+  "Ke",
+  "Khe",
+  "We",
+  "Ayn",
+  "Ze",
+  "Zhe",
+  "Ye",
+  "De",
+  "Je",
+  "Ge",
+  "Tte",
+  "Cche",
+  "Ppe",
+  "Tse",
+  "Tse2",
+  "Fe",
+  "Pe",
+];
+
+export type AbugidaCell = { symbol: string; latin: string };
+
+export function buildAbugidaChant(): AbugidaCell[][] {
+  const byName = new Map(FIDEL_FAMILIES.map((f) => [f.name, f]));
+  const n = ABUGIDA_ORDER.length;
+  const rows: AbugidaCell[][] = [];
+  for (let row = 0; row < n; row++) {
+    const cells: AbugidaCell[] = [];
+    for (let col = 0; col < 7; col++) {
+      const family = byName.get(ABUGIDA_ORDER[(row + col) % n]);
+      if (!family) continue;
+      cells.push({ symbol: family.chars[col], latin: fidelLatin(family, col) });
+    }
+    rows.push(cells);
+  }
+  return rows;
+}
 
 const ORDER_VOWELS = ["a", "u", "i", "aa", "e", "", "o"];
 const GLOTTAL_VOWELS = ["a", "u", "i", "aa", "e", "i", "o"];
