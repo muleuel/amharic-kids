@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { SpeakButton } from "@/components/SpeakButton";
 import { subjectTheme } from "@/lib/theme";
 import { searchDictionaryWords, searchDictionaryByLetter } from "@/app/actions";
+import { phoneticToGeez, transliterateSegments } from "@/lib/phonetic";
 
 export type DictEntry = {
   id: string;
@@ -39,26 +40,59 @@ export function DictionarySearch({
   entries: DictEntry[];
   letters: DictLetter[];
 }) {
-  const [amText, setAmText] = useState("");
+  // The Amharic box supports phonetic typing (e.g. "selam" -> ሰላም), so its
+  // displayed value is derived from a raw Latin buffer rather than being a
+  // plain controlled string. Native Amharic keyboards/IMEs and pasted
+  // Amharic text pass through the transliterator untouched, so they work
+  // too — see src/lib/phonetic.ts.
+  const [amLatinBuffer, setAmLatinBuffer] = useState("");
+  const [isComposing, setIsComposing] = useState(false);
+  const amText = phoneticToGeez(amLatinBuffer);
+
   const [enText, setEnText] = useState("");
   const [mode, setMode] = useState<Mode>({ kind: "none" });
   const [bigResults, setBigResults] = useState<DictEntry[]>([]);
   const [loading, setLoading] = useState(false);
   const theme = subjectTheme("dialogues");
 
-  function handleAmChange(value: string) {
-    setAmText(value);
+  function updateAmharic(nextLatinBuffer: string) {
+    setAmLatinBuffer(nextLatinBuffer);
     setEnText("");
-    const next: Mode = value.trim()
-      ? { kind: "amharic", query: value.trim() }
+    const nextAmText = phoneticToGeez(nextLatinBuffer);
+    const next: Mode = nextAmText.trim()
+      ? { kind: "amharic", query: nextAmText.trim() }
       : { kind: "none" };
     if (next.kind !== "none") setLoading(true);
     setMode(next);
   }
 
+  function handleAmKeyDown(e: React.KeyboardEvent<HTMLInputElement>) {
+    if (isComposing || e.ctrlKey || e.metaKey || e.altKey) return;
+    if (e.key === "Backspace") {
+      e.preventDefault();
+      const segments = transliterateSegments(amLatinBuffer);
+      updateAmharic(segments.slice(0, -1).map((s) => s.latin).join(""));
+      return;
+    }
+    if (e.key.length === 1) {
+      e.preventDefault();
+      updateAmharic(amLatinBuffer + e.key);
+    }
+  }
+
+  function handleAmPaste(e: React.ClipboardEvent<HTMLInputElement>) {
+    e.preventDefault();
+    updateAmharic(amLatinBuffer + e.clipboardData.getData("text"));
+  }
+
+  function handleCompositionEnd(e: React.CompositionEvent<HTMLInputElement>) {
+    setIsComposing(false);
+    updateAmharic(amLatinBuffer + e.data);
+  }
+
   function handleEnChange(value: string) {
     setEnText(value);
-    setAmText("");
+    setAmLatinBuffer("");
     const next: Mode = value.trim()
       ? { kind: "english", query: value.trim() }
       : { kind: "none" };
@@ -67,7 +101,7 @@ export function DictionarySearch({
   }
 
   function handleLetterClick(letter: DictLetter) {
-    setAmText("");
+    setAmLatinBuffer("");
     setEnText("");
     setMode((prev) => {
       const next: Mode =
@@ -132,16 +166,25 @@ export function DictionarySearch({
   return (
     <div className="flex flex-col gap-6">
       <div className="grid gap-4 sm:grid-cols-2">
-        <div className="bubble-card flex items-center gap-3 border-purple-dark bg-white p-4">
-          <span className="text-2xl">🇪🇹</span>
-          <input
-            value={amText}
-            onChange={(e) => handleAmChange(e.target.value)}
-            placeholder="Type in Amharic..."
-            className="font-ethiopic flex-1 text-xl font-semibold outline-none"
-          />
+        <div className="flex flex-col gap-1">
+          <div className="bubble-card flex items-center gap-3 border-purple-dark bg-white p-4">
+            <span className="text-2xl">🇪🇹</span>
+            <input
+              value={amText}
+              onKeyDown={handleAmKeyDown}
+              onPaste={handleAmPaste}
+              onCompositionStart={() => setIsComposing(true)}
+              onCompositionEnd={handleCompositionEnd}
+              onChange={(e) => updateAmharic(e.target.value)}
+              placeholder="Type in Amharic..."
+              className="font-ethiopic flex-1 text-xl font-semibold outline-none"
+            />
+          </div>
+          <p className="px-2 text-xs text-foreground/40">
+            Type phonetically — &quot;selam&quot; becomes ሰላም
+          </p>
         </div>
-        <div className="bubble-card flex items-center gap-3 border-blue-dark bg-white p-4">
+        <div className="bubble-card flex h-fit items-center gap-3 border-blue-dark bg-white p-4">
           <span className="text-2xl">🇬🇧</span>
           <input
             value={enText}
