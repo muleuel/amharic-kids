@@ -8,6 +8,7 @@ import {
   DIALOGUE_LESSONS,
   fidelLatin,
 } from "./content";
+import dictionaryData from "./dictionary-data.json";
 
 const adapter = new PrismaBetterSqlite3({
   url: process.env.DATABASE_URL ?? "file:./dev.db",
@@ -24,6 +25,7 @@ async function main() {
   await prisma.item.deleteMany();
   await prisma.lesson.deleteMany();
   await prisma.subject.deleteMany();
+  await prisma.dictionaryWord.deleteMany();
   await prisma.kid.updateMany({ data: { stars: 0 } });
 
   const fidel = await prisma.subject.create({
@@ -185,6 +187,14 @@ async function main() {
     });
   }
 
+  // --- General dictionary (English headword -> Amharic translation) ---
+  const BATCH_SIZE = 1000;
+  for (let i = 0; i < dictionaryData.length; i += BATCH_SIZE) {
+    await prisma.dictionaryWord.createMany({
+      data: dictionaryData.slice(i, i + BATCH_SIZE),
+    });
+  }
+
   // --- Badges ---
   await prisma.badge.createMany({
     data: [
@@ -250,8 +260,9 @@ async function main() {
   const lessonCount = await prisma.lesson.count();
   const itemCount = await prisma.item.count();
   const dialogueLineCount = await prisma.dialogueLine.count();
+  const dictionaryCount = await prisma.dictionaryWord.count();
   console.log(
-    `Seeded ${lessonCount} lessons, ${itemCount} items, and ${dialogueLineCount} dialogue lines across 4 subjects.`,
+    `Seeded ${lessonCount} lessons, ${itemCount} items, ${dialogueLineCount} dialogue lines, and ${dictionaryCount} dictionary words.`,
   );
 }
 

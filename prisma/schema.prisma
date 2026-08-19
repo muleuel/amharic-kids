@@ -131,6 +131,17 @@ model Badge {
   kids        KidBadge[]
 }
 
+// A full English-headword -> Amharic-translation pair for the general
+// dictionary tool. Much larger than the curated `Item` vocabulary used in
+// lessons; sourced from a CC0-licensed public dataset (see prisma/seed.ts).
+model DictionaryWord {
+  id       String @id @default(cuid())
+  headword String
+  am       String
+
+  @@index([headword])
+}
+
 model KidBadge {
   id       String   @id @default(cuid())
   kidId    String

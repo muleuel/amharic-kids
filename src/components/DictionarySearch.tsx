@@ -1,12 +1,13 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { SpeakButton } from "@/components/SpeakButton";
 import { subjectTheme } from "@/lib/theme";
+import { searchDictionaryWords, searchDictionaryByLetter } from "@/app/actions";
 
 export type DictEntry = {
   id: string;
-  type: "word" | "fidel" | "number" | "phrase";
+  type: "word" | "fidel" | "number" | "phrase" | "dictionary";
   am: string;
   en: string;
   emoji?: string;
@@ -19,9 +20,11 @@ const TYPE_ICON: Record<DictEntry["type"], string> = {
   fidel: "🔤",
   number: "🔢",
   phrase: "💬",
+  dictionary: "📖",
 };
 
 const PREVIEW_COUNT = 12;
+const DEBOUNCE_MS = 250;
 
 type Mode =
   | { kind: "none" }
@@ -39,31 +42,74 @@ export function DictionarySearch({
   const [amText, setAmText] = useState("");
   const [enText, setEnText] = useState("");
   const [mode, setMode] = useState<Mode>({ kind: "none" });
+  const [bigResults, setBigResults] = useState<DictEntry[]>([]);
+  const [loading, setLoading] = useState(false);
   const theme = subjectTheme("dialogues");
 
   function handleAmChange(value: string) {
     setAmText(value);
     setEnText("");
-    setMode(value.trim() ? { kind: "amharic", query: value.trim() } : { kind: "none" });
+    const next: Mode = value.trim()
+      ? { kind: "amharic", query: value.trim() }
+      : { kind: "none" };
+    if (next.kind !== "none") setLoading(true);
+    setMode(next);
   }
 
   function handleEnChange(value: string) {
     setEnText(value);
     setAmText("");
-    setMode(value.trim() ? { kind: "english", query: value.trim() } : { kind: "none" });
+    const next: Mode = value.trim()
+      ? { kind: "english", query: value.trim() }
+      : { kind: "none" };
+    if (next.kind !== "none") setLoading(true);
+    setMode(next);
   }
 
   function handleLetterClick(letter: DictLetter) {
     setAmText("");
     setEnText("");
-    setMode((prev) =>
-      prev.kind === "letter" && prev.letter.name === letter.name
-        ? { kind: "none" }
-        : { kind: "letter", letter },
-    );
+    setMode((prev) => {
+      const next: Mode =
+        prev.kind === "letter" && prev.letter.name === letter.name
+          ? { kind: "none" }
+          : { kind: "letter", letter };
+      if (next.kind !== "none") setLoading(true);
+      return next;
+    });
   }
 
-  const results = useMemo(() => {
+  // Debounced fetch against the full 11k+ word dictionary, which lives in
+  // the database rather than being shipped to the client all at once.
+  useEffect(() => {
+    if (mode.kind === "none") return;
+    let cancelled = false;
+    const timer = setTimeout(async () => {
+      const words =
+        mode.kind === "letter"
+          ? await searchDictionaryByLetter(mode.letter.chars)
+          : await searchDictionaryWords(
+              mode.kind === "amharic" ? mode.query : mode.query,
+              mode.kind === "amharic" ? "am" : "en",
+            );
+      if (cancelled) return;
+      setBigResults(
+        words.map((w) => ({
+          id: w.id,
+          type: "dictionary" as const,
+          am: w.am,
+          en: w.headword,
+        })),
+      );
+      setLoading(false);
+    }, DEBOUNCE_MS);
+    return () => {
+      cancelled = true;
+      clearTimeout(timer);
+    };
+  }, [mode]);
+
+  const curatedResults: DictEntry[] | null = (() => {
     if (mode.kind === "amharic") {
       return entries.filter((e) => e.am.includes(mode.query));
     }
@@ -77,8 +123,10 @@ export function DictionarySearch({
       );
     }
     return null;
-  }, [entries, mode]);
+  })();
 
+  const results =
+    curatedResults === null ? null : [...curatedResults, ...bigResults];
   const selectedLetterName = mode.kind === "letter" ? mode.letter.name : null;
 
   return (
@@ -127,13 +175,17 @@ export function DictionarySearch({
 
       {mode.kind === "none" && (
         <p className="text-center text-sm font-semibold text-foreground/50">
-          Type a word above, or tap a letter — {entries.length} entries in
-          total.
+          Type a word above, or tap a letter — search the full dictionary.
         </p>
       )}
-      {results && results.length === 0 && (
+      {loading && (
+        <p className="text-center text-sm font-semibold text-foreground/40">
+          Searching...
+        </p>
+      )}
+      {results && !loading && results.length === 0 && (
         <p className="text-center font-bold text-foreground/50">
-          No matches yet — that word isn&apos;t in our lessons.
+          No matches found.
         </p>
       )}
 

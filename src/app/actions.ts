@@ -87,3 +87,38 @@ export async function submitLessonResult(
     })),
   };
 }
+
+const DICTIONARY_RESULT_LIMIT = 60;
+const DICTIONARY_LETTER_LIMIT = 150;
+
+export async function searchDictionaryWords(
+  query: string,
+  direction: "am" | "en",
+) {
+  const q = query.trim();
+  if (!q) return [];
+
+  const words =
+    direction === "am"
+      ? await prisma.dictionaryWord.findMany({
+          where: { am: { contains: q } },
+          take: DICTIONARY_RESULT_LIMIT,
+          orderBy: { headword: "asc" },
+        })
+      : await prisma.dictionaryWord.findMany({
+          where: { headword: { contains: q } },
+          take: DICTIONARY_RESULT_LIMIT,
+          orderBy: { headword: "asc" },
+        });
+
+  return words.map((w) => ({ id: w.id, headword: w.headword, am: w.am }));
+}
+
+export async function searchDictionaryByLetter(chars: string[]) {
+  const words = await prisma.dictionaryWord.findMany({
+    where: { OR: chars.map((c) => ({ am: { startsWith: c } })) },
+    take: DICTIONARY_LETTER_LIMIT,
+    orderBy: { am: "asc" },
+  });
+  return words.map((w) => ({ id: w.id, headword: w.headword, am: w.am }));
+}
