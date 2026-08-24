@@ -618,4 +618,117 @@ export const DIALOGUE_LESSONS: DialogueLesson[] = [
       },
     ],
   },
+  {
+    slug: "baptism",
+    title: "Baptism",
+    titleAm: "ጥምቀት",
+    lines: [
+      {
+        ...DAWIT,
+        am: "ሳራ፣ ፎቶ አየሽ? ብዙ ሰዎች በነጭ ልብስ ወንዝ አጠገብ ነበሩ።",
+        en: "Sara, did you see the photo? Many people in white clothes were near a river.",
+      },
+      { ...SARA, am: "አየሁ! ምንድን ነው?", en: "I saw it! What is it?" },
+      {
+        ...DAWIT,
+        am: "ያ የጥምቀት በዓል ነው። በኢትዮጵያ ኦርቶዶክስ ቤተ ክርስቲያን በጣም ትልቅ በዓል ነው።",
+        en: "That's the Timkat festival. It's a very big holiday in the Ethiopian Orthodox Church.",
+      },
+      { ...SARA, am: "ጥምቀት ምን ማለት ነው?", en: 'What does "timket" (baptism) mean?' },
+      {
+        ...DAWIT,
+        am: "ጥምቀት ማለት በውሃ መጠመቅ ማለት ነው፣ ኢየሱስ ክርስቶስ በዮርዳኖስ ወንዝ የተጠመቀበትን ቀን የምናከብርበት ነው።",
+        en: "Baptism means being immersed in water — it's the day we celebrate Jesus Christ being baptized in the Jordan River.",
+      },
+      { ...SARA, am: "መቼ ነው የሚከበረው?", en: "When is it celebrated?" },
+      {
+        ...DAWIT,
+        am: "በጥር ወር አስራ አንድ ቀን ይከበራል፣ ታቦት ወደ ወንዝ ወይም ኩሬ ይወሰዳል።",
+        en: "It's celebrated on the 11th of Tir; the Tabot is taken to a river or pool.",
+      },
+      { ...SARA, am: "ታቦት ምንድን ነው?", en: "What is a Tabot?" },
+      {
+        ...DAWIT,
+        am: "ታቦት የኪዳኑ ታቦት ምሳሌ ሲሆን በካህናት ተከብሮ ይያዛል፣ ሰዎችም ዘምረው ይከተላሉ።",
+        en: "The Tabot represents the Ark of the Covenant; it's carried respectfully by priests, and people follow singing.",
+      },
+      {
+        ...SARA,
+        am: "ልጆችስ ስንት ቀናቸው ይጠመቃሉ?",
+        en: "And children — at how many days old are they baptized?",
+      },
+      {
+        ...DAWIT,
+        am: "ወንድ ልጅ በአርባ ቀኑ ይጠመቃል፣ ሴት ልጅ ደግሞ በሰማንያ ቀኗ ትጠመቃለች።",
+        en: "A boy is baptized at 40 days old, and a girl is baptized at 80 days old.",
+      },
+      {
+        ...SARA,
+        am: "በጥምቀት ጊዜ ስም ይሰጣል አይደል?",
+        en: "A name is given at baptism, right?",
+      },
+      {
+        ...DAWIT,
+        am: '"ክርስትና ስም" ይባላል፣ ካህኑ ልጁን ሦስት ጊዜ በውሃ ውስጥ ያጠምቃል፣ በአብ በወልድ በመንፈስ ቅዱስ ስም።',
+        en: 'It\'s called the "christening name." The priest immerses the child in water three times, in the name of the Father, Son, and Holy Spirit.',
+      },
+      {
+        ...SARA,
+        am: "ክርስትና አባትና እናትስ ምን ይሰራሉ?",
+        en: "And what do the godfather and godmother do?",
+      },
+      {
+        ...DAWIT,
+        am: "ልጁን በእምነት ያሳድጋሉ፣ ዘወትር ይመክሩታል፣ ይረዱታልም።",
+        en: "They help raise the child in faith, always advise them, and support them.",
+      },
+      {
+        ...SARA,
+        am: "በጣም ደስ የሚል ልማድ ነው! የገባኝ ይመስለኛል አሁን።",
+        en: "That's a very lovely tradition! I think I understand now.",
+      },
+    ],
+    questions: [
+      {
+        prompt: "ጥምቀት መቼ ይከበራል?",
+        correct: "ጥር አስራ አንድ",
+        options: ["ጥር አስራ አንድ", "መስከረም አንድ", "ጳጉሜ አንድ", "ሰኔ አስራ አንድ"],
+      },
+      {
+        prompt: "ወንድ ልጅ በስንተኛ ቀኑ ይጠመቃል?",
+        correct: "40",
+        options: ["40", "80", "30", "7"],
+      },
+      {
+        prompt: "ሴት ልጅ በስንተኛ ቀኗ ትጠመቃለች?",
+        correct: "80",
+        options: ["80", "40", "60", "100"],
+      },
+      {
+        prompt: "ካህኑ ልጁን ስንት ጊዜ በውሃ ውስጥ ያጠምቃል?",
+        correct: "3",
+        options: ["3", "1", "2", "7"],
+      },
+      {
+        prompt: "ታቦት ምንን ይወክላል?",
+        correct: "የኪዳኑ ታቦት",
+        options: ["የኪዳኑ ታቦት", "መጽሐፍ", "መስቀል", "ደወል"],
+      },
+      {
+        prompt: "በጥምቀት ወቅት የሚሰጠው ስም ምን ይባላል?",
+        correct: "ክርስትና ስም",
+        options: ["ክርስትና ስም", "የቤት ስም", "ቅጽል ስም", "የአባት ስም"],
+      },
+      {
+        prompt: "ክርስትና አባትና እናት ምን ያደርጋሉ?",
+        correct: "ልጁን በእምነት ያሳድጋሉ",
+        options: ["ልጁን በእምነት ያሳድጋሉ", "ስጦታ ብቻ ይሰጣሉ", "ምንም አያደርጉም", "ገንዘብ ያከማቻሉ"],
+      },
+      {
+        prompt: "ኢየሱስ ክርስቶስ የተጠመቀው በየትኛው ወንዝ ነው?",
+        correct: "ዮርዳኖስ",
+        options: ["ዮርዳኖስ", "አዋሽ", "አባይ", "ተከዜ"],
+      },
+    ],
+  },
 ];
