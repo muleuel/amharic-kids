@@ -731,4 +731,158 @@ export const DIALOGUE_LESSONS: DialogueLesson[] = [
       },
     ],
   },
+  {
+    slug: "new-year",
+    title: "Ethiopian New Year",
+    titleAm: "እንቁጣጣሽ",
+    lines: [
+      {
+        ...DAWIT,
+        am: "ሳራ፣ እንቁጣጣሽ ደረሰ! ስለ ታሪኩ ታውቂያለሽ?",
+        en: "Sara, Enkutatash has arrived! Do you know its history?",
+      },
+      {
+        ...SARA,
+        am: "ትንሽ አውቃለሁ፣ ግን በደንብ አላውቅም። ንገረኝ እስቲ!",
+        en: "I know a little, but not well. Please tell me!",
+      },
+      {
+        ...DAWIT,
+        am: "እንደ ትውፊቱ፣ ስሙ የመጣው ከንግሥት ሳባ ታሪክ ነው።",
+        en: "According to tradition, the name comes from the story of the Queen of Sheba.",
+      },
+      {
+        ...SARA,
+        am: "እንዴት ማለት ነው? ግንኙነቱ ምንድን ነው?",
+        en: "What do you mean? What's the connection?",
+      },
+      {
+        ...DAWIT,
+        am: "ንግሥት ሳባ ንጉሥ ሰሎሞንን ከጎበኘች በኋላ ወደ ኢትዮጵያ ስትመለስ፣ መኳንንቷ በዕንቁ እየተቀበሏት ደስታቸውን ገለጹ።",
+        en: "After the Queen of Sheba visited King Solomon and returned to Ethiopia, her chiefs welcomed her with jewels, expressing their joy.",
+      },
+      {
+        ...SARA,
+        am: 'ኦው! ስለዚህ "እንቁ" ማለት ውድ ድንጋይ ማለት ነው?',
+        en: 'Oh! So "enku" means precious stone?',
+      },
+      {
+        ...DAWIT,
+        am: 'በትክክል! "እንቁጣጣሽ" ማለት "የእንቁ ስጦታ" ማለት ነው ብለው ይተረጉሙታል።',
+        en: 'Exactly! They translate "Enkutatash" to mean "gift of jewels".',
+      },
+      {
+        ...SARA,
+        am: "ከዚህ ሌላ ምን ትርጉም አለው በዓሉ?",
+        en: "What other meaning does the holiday have?",
+      },
+      {
+        ...DAWIT,
+        am: 'የክረምት ወቅት ስለሚጠናቀቅ፣ አዲስ ህይወት የሚጀምርበት ወቅት ተደርጎ ይታሰባል፣ ስለዚህም ሰዎች "አዲስ ገጽ እንገልብጣለን" ይላሉ።',
+        en: 'Since the rainy season ends, it\'s considered a time when new life begins, which is why people say "we turn a new page."',
+      },
+      {
+        ...SARA,
+        am: "ልጆቹስ ምን ያደርጋሉ በዚህ ቀን?",
+        en: "And what do the children do on this day?",
+      },
+      {
+        ...DAWIT,
+        am: "ልጆች የአደይ አበባ ይለቅማሉ፣ ከቤት ወደ ቤት እየዞሩ ይዘፍናሉ፣ በምላሹም ገንዘብ ወይም ዳቦ ይሰጣቸዋል።",
+        en: "Children pick Adey Abeba (Meskel daisy) flowers, go from house to house singing, and are given money or bread in return.",
+      },
+      {
+        ...SARA,
+        am: "ያ በጣም አስደሳች ይመስላል! ዘፈኑስ ምን ይላል?",
+        en: "That sounds so fun! What does the song say?",
+      },
+      {
+        ...DAWIT,
+        am: "እንኳን አደረሳችሁ እያሉ ይመርቃሉ፣ ለቤተሰቡም ጤናና ብልጽግና ይመኛሉ።",
+        en: 'They bless people saying "may you reach it again," and wish the family health and prosperity.',
+      },
+      {
+        ...SARA,
+        am: "ከሃይማኖት ጋርስ ግንኙነት አለው?",
+        en: "Does it have a connection to religion?",
+      },
+      {
+        ...DAWIT,
+        am: "አዎ፣ ይህ ቀን ከቅዱስ ዮሐንስ በዓል ጋር ይገጣጠማል፣ ስለዚህ ብዙ ቤተሰቦች ወደ ቤተ ክርስቲያን ይሄዳሉ።",
+        en: "Yes, this day coincides with the feast of Saint John, so many families go to church.",
+      },
+      {
+        ...SARA,
+        am: "ቤተሰብስ በቤት ውስጥ ምን ያደርጋል?",
+        en: "And what does the family do at home?",
+      },
+      {
+        ...DAWIT,
+        am: "ዘመዶች ተሰብስበው ልዩ ምግብ ይበላሉ፣ ብዙ ጊዜም ዶሮ ወጥ ይዘጋጃል፣ እንዲሁም እርስ በርስ ይጠያየቃሉ።",
+        en: "Relatives gather and eat special food — doro wat is often prepared — and they visit one another.",
+      },
+      {
+        ...SARA,
+        am: "ከምዕራባውያኑ አዲስ ዓመት የተለየ የሚያደርገው ብዙ ነገር አለ!",
+        en: "There's a lot that makes it different from the Western new year!",
+      },
+      {
+        ...DAWIT,
+        am: "በትክክል፣ ምክንያቱም ቀኑ ብቻ ሳይሆን ትርጉሙም የተለየ ነው፤ ተስፋንና እድሳትን ይወክላል።",
+        en: "Exactly, because it's not just the date — the meaning is different too; it represents hope and renewal.",
+      },
+      {
+        ...SARA,
+        am: "በጣም አመሰግናለሁ ዳዊት፣ ዛሬ ብዙ ተምሬያለሁ!",
+        en: "Thank you so much Dawit, I learned a lot today!",
+      },
+    ],
+    questions: [
+      {
+        prompt: "እንቁጣጣሽ የሚለው ስም ግንኙነት ያለው ከማን ታሪክ ጋር ነው?",
+        correct: "ንግሥት ሳባ",
+        options: ["ንግሥት ሳባ", "ንጉሥ ሰሎሞን", "ቅዱስ ዮሐንስ", "ንጉሥ ላሊበላ"],
+      },
+      {
+        prompt: "እንቁ ማለት ምን ማለት ነው?",
+        correct: "ውድ ድንጋይ",
+        options: ["ውድ ድንጋይ", "አበባ", "ወርቅ ብቻ", "ውሃ"],
+      },
+      {
+        prompt: "እንቁጣጣሽ ከየትኛው ወቅት መጨረሻ ጋር ይገጣጠማል?",
+        correct: "ክረምት",
+        options: ["ክረምት", "በጋ", "መኸር", "ጸደይ"],
+      },
+      {
+        prompt: "ልጆች በእንቁጣጣሽ ቀን የትኛውን አበባ ይለቅማሉ?",
+        correct: "አደይ አበባ",
+        options: ["አደይ አበባ", "ሮዝ", "የሱፍ አበባ", "ጽጌረዳ"],
+      },
+      {
+        prompt: "ልጆች ከቤት ወደ ቤት ሲዞሩ ምን ያደርጋሉ?",
+        correct: "ይዘፍናሉ",
+        options: ["ይዘፍናሉ", "ይተኛሉ", "ያጠናሉ", "ይሮጣሉ"],
+      },
+      {
+        prompt: "እንቁጣጣሽ ከየትኛው ሃይማኖታዊ በዓል ጋር ይገጣጠማል?",
+        correct: "ቅዱስ ዮሐንስ",
+        options: ["ቅዱስ ዮሐንስ", "ገና", "ትንሳኤ", "ጥምቀት"],
+      },
+      {
+        prompt: "በዚህ በዓል ቀን ብዙ ጊዜ የሚዘጋጀው ምግብ ምንድን ነው?",
+        correct: "ዶሮ ወጥ",
+        options: ["ዶሮ ወጥ", "ፓስታ", "ፒዛ", "ሩዝ"],
+      },
+      {
+        prompt: "እንደ ዳዊት ገለጻ፣ እንቁጣጣሽ ምንን ይወክላል?",
+        correct: "ተስፋንና እድሳትን",
+        options: ["ተስፋንና እድሳትን", "ፍርሃትን", "ድካምን", "ብቸኝነትን"],
+      },
+      {
+        prompt: "'እንቁጣጣሽ' የሚለው ቃል ምን ማለት እንደሆነ ይተረጉሙታል?",
+        correct: "የእንቁ ስጦታ",
+        options: ["የእንቁ ስጦታ", "አዲስ ዓመት ብቻ", "የፀሐይ ቀን", "የውሃ በዓል"],
+      },
+    ],
+  },
 ];
