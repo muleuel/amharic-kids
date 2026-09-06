@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Baloo_2, Noto_Sans_Ethiopic } from "next/font/google";
+import { NoVoiceToast } from "@/components/SpeakButton";
 import "./globals.css";
 
 const baloo = Baloo_2({
@@ -26,7 +27,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="en"
       className={`${baloo.variable} ${notoEthiopic.variable} h-full`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        {children}
+        <NoVoiceToast />
+      </body>
     </html>
   );
 }
