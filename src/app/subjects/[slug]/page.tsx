@@ -45,7 +45,7 @@ export default async function SubjectPage(
       title: lesson.title,
       titleAm: lesson.titleAm,
       stars: p?.stars ?? 0,
-      unlocked: previousCompleted,
+      unlocked: kid.freeRoam || previousCompleted,
     });
     previousCompleted = p?.completed ?? false;
   }
@@ -73,6 +73,11 @@ export default async function SubjectPage(
           >
             🎵 Abugida Chant
           </Link>
+        )}
+        {kid.freeRoam && (
+          <span className="chunky-btn border-2 border-sun bg-sun/20 px-4 py-2 text-orange-dark">
+            🔓 Free Roam is on
+          </span>
         )}
       </div>
 

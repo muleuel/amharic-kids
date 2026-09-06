@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { switchProfile } from "@/app/actions";
+import { switchProfile, toggleFreeRoam } from "@/app/actions";
 import { subjectTheme } from "@/lib/theme";
 
 type SubjectSummary = {
@@ -17,7 +17,13 @@ export function Dashboard({
   kid,
   subjects,
 }: {
-  kid: { id: string; name: string; avatar: string; stars: number };
+  kid: {
+    id: string;
+    name: string;
+    avatar: string;
+    stars: number;
+    freeRoam: boolean;
+  };
   subjects: SubjectSummary[];
 }) {
   return (
@@ -45,6 +51,19 @@ export function Dashboard({
           >
             🏅 My Rewards
           </Link>
+          <form action={toggleFreeRoam}>
+            <button
+              type="submit"
+              title="When on, all lessons are unlocked so you can start anywhere instead of going in order."
+              className={`chunky-btn border-2 px-4 py-2 ${
+                kid.freeRoam
+                  ? "border-orange-dark bg-orange text-white"
+                  : "border-orange-dark bg-white text-orange-dark"
+              }`}
+            >
+              {kid.freeRoam ? "🔓 Free Roam: On" : "🔒 Free Roam: Off"}
+            </button>
+          </form>
           <form action={switchProfile}>
             <button
               type="submit"

@@ -13,6 +13,7 @@ model Kid {
   name      String
   avatar    String     @default("🦁")
   stars     Int        @default(0)
+  freeRoam  Boolean    @default(false)
   createdAt DateTime   @default(now())
   progress  Progress[]
   badges    KidBadge[]

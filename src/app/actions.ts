@@ -29,6 +29,16 @@ export async function switchProfile() {
   redirect("/");
 }
 
+export async function toggleFreeRoam() {
+  const kid = await getActiveKid();
+  if (!kid) return;
+  await prisma.kid.update({
+    where: { id: kid.id },
+    data: { freeRoam: !kid.freeRoam },
+  });
+  revalidatePath("/");
+}
+
 export async function submitLessonResult(
   lessonId: string,
   correct: number,
