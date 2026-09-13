@@ -885,4 +885,172 @@ export const DIALOGUE_LESSONS: DialogueLesson[] = [
       },
     ],
   },
+  {
+    slug: "calendar-seasons",
+    title: "Calendar & Seasons",
+    titleAm: "የቀን አቆጣጠር እና ወቅቶች",
+    lines: [
+      {
+        ...SARA,
+        am: "ዳዊት፣ ስለ ኢትዮጵያ ወራት ሁሉንም በቅደም ተከተል ልትነግረኝ ትችላለህ?",
+        en: "Dawit, can you tell me all the Ethiopian months in order?",
+      },
+      {
+        ...DAWIT,
+        am: "እሺ! አስራ ሦስት ወራት አሉ፦ መስከረም፣ ጥቅምት፣ ኅዳር፣ ታኅሳስ፣ ጥር፣ የካቲት፣ መጋቢት፣ ሚያዝያ፣ ግንቦት፣ ሰኔ፣ ሐምሌ፣ ነሐሴ፣ እና ጳጉሜ።",
+        en: "Sure! There are thirteen: Meskerem, Tikimt, Hidar, Tahsas, Tir, Yekatit, Megabit, Miazia, Ginbot, Sene, Hamle, Nehase, and Pagume.",
+      },
+      {
+        ...SARA,
+        am: "ዋው፣ ስንት ብዬ ልቁጠራቸው! እነዚህ ወራት ከየትኞቹ የፈረንጅ ወራት ጋር ይመሳሰላሉ?",
+        en: "Wow, that's a lot to count! Which Western months do these correspond to?",
+      },
+      {
+        ...DAWIT,
+        am: "መስከረም ከመስከረም አስራ አንድ ጀምሮ እስከ ጥቅምት አጋማሽ ይዘልቃል። እያንዳንዱ የኢትዮጵያ ወር ከፈረንጅ ወር ስምንት ቀናት ያህል ዘግይቶ ይጀምራል።",
+        en: "Meskerem starts around September 11 and runs to mid-October. Each Ethiopian month starts about eight days later than its Western counterpart.",
+      },
+      {
+        ...SARA,
+        am: "ለምንድን ነው የኢትዮጵያ አቆጣጠር ከፈረንጅ አቆጣጠር የተለየ የሆነው?",
+        en: "Why is the Ethiopian calendar different from the Western calendar?",
+      },
+      {
+        ...DAWIT,
+        am: "ልዩነቱ የመጣው ኢትዮጵያና ምዕራባውያን ኢየሱስ ክርስቶስ የተወለደበትን ዓመት በተለያየ ስሌት በማስላታቸው ነው፤ ስለዚህ የኢትዮጵያ ዘመን አቆጣጠር ከፈረንጅ በሰባት ወይም ስምንት ዓመት ያንሳል።",
+        en: "The difference comes from Ethiopia and the West calculating the year of Christ's birth differently, so the Ethiopian year count is seven or eight years behind the Western one.",
+      },
+      {
+        ...SARA,
+        am: "ትዝ አለኝ፣ ጳጉሜ የተለየች ወር ናት! ስንት ቀናት አሏት?",
+        en: "I remember, Pagume is a special month! How many days does it have?",
+      },
+      {
+        ...DAWIT,
+        am: "በአብዛኛው አምስት ቀናት አሏት፣ ነገር ግን በየአራት ዓመቱ አንድ ጊዜ፣ ጥንዝር ዓመት ሲሆን፣ ስድስት ቀናት ይኖሯታል።",
+        en: "Mostly five days, but once every four years, in a leap year, it has six days.",
+      },
+      {
+        ...SARA,
+        am: "ጥሩ! አሁን ስለ ወቅቶች ንገረኝ። ኢትዮጵያ ስንት ወቅቶች አሏት?",
+        en: "Great! Now tell me about the seasons. How many seasons does Ethiopia have?",
+      },
+      {
+        ...DAWIT,
+        am: "በዋናነት ሦስት ወቅቶች አሉ፦ ክረምት፣ በጋ፣ እና ጸደይ።",
+        en: "There are mainly three: Kiremt, Bega, and Tsedey.",
+      },
+      { ...SARA, am: "እያንዳንዳቸውን አብራራልኝ!", en: "Explain each one to me!" },
+      {
+        ...DAWIT,
+        am: "ክረምት ትልቁ የዝናብ ወቅት ነው፣ ከሰኔ እስከ መስከረም ድረስ ይቆያል፣ አብዛኛው የግብርና ሥራም የሚከናወነው በዚህ ወቅት ነው።",
+        en: "Kiremt is the main rainy season, lasting from June to September; most farming work happens during it.",
+      },
+      { ...SARA, am: "እና በጋ?", en: "And Bega?" },
+      {
+        ...DAWIT,
+        am: "በጋ ደረቃማው ወቅት ነው፣ ከጥቅምት እስከ የካቲት ድረስ ይዘልቃል፤ ብዙውን ጊዜ ምርት የሚሰበሰበውም በዚህ ወቅት ነው።",
+        en: "Bega is the dry season, lasting from October to February; harvesting mostly happens during it.",
+      },
+      { ...SARA, am: "ታዲያ ጸደይስ?", en: "And what about Tsedey?" },
+      {
+        ...DAWIT,
+        am: 'ጸደይ አጭር የዝናብ ወቅት ነው፣ ከመጋቢት እስከ ግንቦት ድረስ ይቆያል፤ አንዳንድ አካባቢዎች "በልግ ዝናብ" ብለው ይጠሩታል።',
+        en: 'Tsedey is a short rainy season lasting from March to May; some areas call it the "belg rains".',
+      },
+      {
+        ...SARA,
+        am: "እሺ፣ አሁን ደግሞ ስለ ሳምንቱ ቀናት ልጠይቅህ። ስንት ቀናት አሉ፣ ስማቸውስ ማን ማን ናቸው?",
+        en: "Okay, now let me ask about the days of the week. How many are there, and what are their names?",
+      },
+      {
+        ...DAWIT,
+        am: "ሰባት ቀናት አሉ፦ ሰኞ፣ ማክሰኞ፣ ረቡዕ፣ ሐሙስ፣ ዓርብ፣ ቅዳሜ፣ እና እሁድ።",
+        en: "There are seven: Segno, Maksegno, Rebu, Hamus, Arb, Kidame, and Ehud.",
+      },
+      {
+        ...SARA,
+        am: "ከእነዚህ ቀናት ውስጥ ልዩ የሆኑ አሉ?",
+        en: "Are any of these days special?",
+      },
+      {
+        ...DAWIT,
+        am: "አዎ፣ ኦርቶዶክስ ክርስቲያኖች ረቡዕንና ዓርብን የጾም ቀናት አድርገው ይይዟቸዋል፣ ስጋና የወተት ተዋጽኦ አይመገቡም።",
+        en: "Yes, Orthodox Christians observe Wednesday and Friday as fasting days, and don't eat meat or dairy.",
+      },
+      { ...SARA, am: "እና ቅዳሜና እሁድስ?", en: "And Saturday and Sunday?" },
+      {
+        ...DAWIT,
+        am: "ሁለቱም የዕረፍት ቀናት ናቸው፣ እሁድ ግን ለአምልኮ የተለየ ቀን ተደርጎ ይከበራል።",
+        en: "Both are rest days, but Sunday is specially observed as a day of worship.",
+      },
+      {
+        ...SARA,
+        am: "በጣም ብዙ ተማርኩ ዛሬ! ኢትዮጵያ የራሷ የሆነ ልዩ የጊዜ አቆጣጠር አላት ማለት ነው።",
+        en: "I learned so much today! Ethiopia really has its own unique way of reckoning time.",
+      },
+      {
+        ...DAWIT,
+        am: "በትክክል፣ ይህ ደግሞ የኢትዮጵያን ባህል ልዩ ከሚያደርጉት ነገሮች አንዱ ነው።",
+        en: "Exactly, and this is one of the things that makes Ethiopian culture unique.",
+      },
+    ],
+    questions: [
+      {
+        prompt: "የኢትዮጵያ ወራት ስንት ናቸው?",
+        correct: "13",
+        options: ["13", "12", "10", "7"],
+      },
+      {
+        prompt: "የኢትዮጵያ ወራት ዝርዝር ውስጥ የመጀመሪያው የትኛው ነው?",
+        correct: "መስከረም",
+        options: ["መስከረም", "ጥር", "ጳጉሜ", "ሐምሌ"],
+      },
+      {
+        prompt: "እያንዳንዱ የኢትዮጵያ ወር ከፈረንጅ ወር ስንት ቀናት ያህል ዘግይቶ ይጀምራል?",
+        correct: "8",
+        options: ["8", "30", "1", "15"],
+      },
+      {
+        prompt: "የኢትዮጵያ ዘመን አቆጣጠር ለምን ከፈረንጅ የተለየ ሆነ?",
+        correct: "ልደተ ክርስቶስን በተለያየ ስሌት በማስላታቸው",
+        options: [
+          "ልደተ ክርስቶስን በተለያየ ስሌት በማስላታቸው",
+          "ምክንያት የለውም",
+          "ኢትዮጵያ የራሷ ካላንደር ስለሌላት",
+          "በስህተት ተከስቷል",
+        ],
+      },
+      {
+        prompt: "ጳጉሜ በጥንዝር ዓመት ስንት ቀናት ይኖሯታል?",
+        correct: "6",
+        options: ["6", "5", "7", "30"],
+      },
+      {
+        prompt: "ኢትዮጵያ ስንት ዋና ዋና ወቅቶች አሏት?",
+        correct: "3",
+        options: ["3", "4", "2", "6"],
+      },
+      {
+        prompt: "ትልቁ የዝናብ ወቅት ማን ይባላል?",
+        correct: "ክረምት",
+        options: ["ክረምት", "በጋ", "ጸደይ", "መኸር"],
+      },
+      {
+        prompt: "ደረቃማው ወቅት ምን ይባላል?",
+        correct: "በጋ",
+        options: ["በጋ", "ክረምት", "ጸደይ", "መኸር"],
+      },
+      {
+        prompt: "ኦርቶዶክስ ክርስቲያኖች የትኞቹን ቀናት የጾም ቀናት አድርገው ይይዟቸዋል?",
+        correct: "ረቡዕና ዓርብ",
+        options: ["ረቡዕና ዓርብ", "ቅዳሜና እሁድ", "ሰኞና ማክሰኞ", "ሐሙስና ቅዳሜ"],
+      },
+      {
+        prompt: "ለአምልኮ የተለየ ቀን ተደርጎ የሚከበረው የትኛው ቀን ነው?",
+        correct: "እሁድ",
+        options: ["እሁድ", "ቅዳሜ", "ዓርብ", "ሰኞ"],
+      },
+    ],
+  },
 ];
